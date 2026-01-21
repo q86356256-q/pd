@@ -1,0 +1,66 @@
+<view class="page theme-{{themeKey}}">
+
+<!-- 家庭信息 -->
+<view class="card">
+  <view class="section-title">当前家庭</view>
+  <view class="family-row">
+    <text class="family-name">{{familyName}}</text>
+    <text class="family-members">{{memberCount}} 位成员</text>
+  </view>
+</view>
+
+<!-- 库存总览 -->
+<view class="card">
+  <view class="section-title">库存总览</view>
+  <view class="overview-grid">
+    <view class="overview-item">
+      <text class="overview-number">{{overview.totalColors}}</text>
+      <text class="overview-label">色号种类</text>
+    </view>
+    <view class="overview-item">
+      <text class="overview-number">{{overview.totalQuantity}}</text>
+      <text class="overview-label">总库存（粒）</text>
+    </view>
+    <view class="overview-item">
+      <text class="overview-number warning">{{overview.lowWarningCount}}</text>
+      <text class="overview-label">低库存色号</text>
+    </view>
+  </view>
+</view>
+
+<!-- 常用色统计 -->
+<view class="card">
+  <view class="section-title">常用色统计（示例）</view>
+  <block wx:if="{{topColors.length === 0}}">
+    <text class="text-small">暂无数据</text>
+  </block>
+  <block wx:else>
+    <view
+      class="top-color-item"
+      wx:for="{{topColors}}"
+      wx:key="id"
+    >
+      <view class="color-left">
+        <view class="color-block" style="background-color: {{item.colorHex}};"></view>
+        <view class="color-info">
+          <text class="color-name">{{item.brand}} {{item.code}} {{item.name}}</text>
+          <text class="text-small">累计使用：{{item.used}} 粒</text>
+        </view>
+      </view>
+      <view class="color-right">
+        <text class="rank">No.{{index + 1}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 近期补货统计 -->
+<view class="card">
+  <view class="section-title">近期补货统计（示例）</view>
+  <view class="summary-row">
+    <text class="text-small">最近 30 天入��总量：{{purchaseSummary.recentIn}} 粒</text>
+    <text class="text-small">最近 30 天出库总量：{{purchaseSummary.recentOut}} 粒</text>
+  </view>
+</view>
+
+</view>

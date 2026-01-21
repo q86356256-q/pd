@@ -1,0 +1,189 @@
+.page {
+  padding-bottom: 40rpx;
+}
+
+/* 顶部像素风状态栏 */
+.header-card {
+  margin-top: 24rpx;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.greeting-title {
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.greeting-welcome {
+  margin-top: 4rpx;
+  font-size: 26rpx;
+  color: #555555;
+}
+.greeting-subtitle {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #777777;
+}
+
+/* 右上角主题块（更自然的标签） */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.theme-pill {
+  padding: 6rpx 14rpx;
+  border-radius: 999rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2rpx solid #ffd6e7;
+  box-shadow: 0 2rpx 0 rgba(255, 160, 194, 0.4);
+}
+
+.theme-pill-text {
+  font-size: 22rpx;
+  color: #ff6f91;
+}
+
+.theme-hint {
+  margin-top: 4rpx;
+}
+
+/* 汇总数字，像小状态面板 */
+.summary-row {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.summary-item {
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.summary-number {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.summary-number.warning {
+  color: #ff4d4f;
+}
+
+.summary-label {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #888888;
+}
+
+/* 快捷操作区 */
+.quick-actions-card {
+  margin-top: 8rpx;
+}
+
+.actions-grid {
+  margin-top: 12rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 像像素图标的按钮块 */
+.action-item {
+  width: 25%;
+  padding: 14rpx 0;
+  align-items: center;
+  text-align: center;
+}
+
+.action-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 6rpx;
+  margin: 0 auto 6rpx;
+  background-color: #f0f0f0;
+}
+
+/* 日系像素色块占位：不同功能不同色块 */
+.action-icon.inventory {
+  background: linear-gradient(135deg, #ffdac1, #ffe4d6);
+}
+.action-icon.in {
+  background: linear-gradient(135deg, #e2f0cb, #f1f8dd);
+}
+.action-icon.out {
+  background: linear-gradient(135deg, #ffc8dd, #ffe1ef);
+}
+.action-icon.overview {
+  background: linear-gradient(135deg, #cde9ff, #e0f2ff);
+}
+
+.action-label {
+  font-size: 22rpx;
+  color: #555555;
+}
+
+/* 最近记录 */
+.recent-card {
+  margin-top: 8rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-more {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.change-item {
+  margin-top: 12rpx;
+  padding-top: 10rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.change-main {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rpx;
+}
+
+.change-color {
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.change-quantity {
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.change-quantity.plus {
+  color: #52c41a;
+}
+
+.change-quantity.minus {
+  color: #ff4d4f;
+}
+
+.change-sub {
+  display: flex;
+  justify-content: space-between;
+}
+
+.change-reason {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.change-time {
+  font-size: 20rpx;
+  color: #bbbbbb;
+}

@@ -1,0 +1,349 @@
+.page {
+  padding-bottom: 120rpx; /* 给批量操作栏留空间 */
+}
+
+/* 搜索区 */
+.search-card {
+  margin-top: 24rpx;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 20rpx;
+  background-color: #f5f5f5;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  border: none;
+}
+
+.search-btn {
+  margin-left: 16rpx;
+  padding: 0 20rpx;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+}
+
+/* 品牌 tabs + 模式切换 */
+.brand-tabs {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-tabs-scroll {
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* 放大后的像素风 pill */
+.brand-tab-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120rpx;
+  height: 56rpx;
+  padding: 0 24rpx;
+  margin-right: 12rpx;
+  border-radius: 10rpx;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 3rpx solid #ffe5e5;
+  box-shadow: 0 3rpx 0 rgba(255, 160, 194, 0.5);
+}
+
+.brand-tab-pill text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+.brand-tab-pill.active {
+  background-color: #ff9aa2;
+  border-color: #ff7aa2;
+  box-shadow: 0 3rpx 0 rgba(255, 122, 145, 0.8);
+}
+
+.brand-tab-pill.active text {
+  color: #ffffff;
+}
+
+.mode-switch {
+  margin-left: 16rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  border: 2rpx dashed #ff9aa2;
+}
+
+.mode-text {
+  font-size: 24rpx;
+  color: #ff9aa2;
+}
+
+/* 列表 */
+.list-card {
+  margin-top: 8rpx;
+}
+
+.empty {
+  margin-top: 12rpx;
+}
+
+.mode-tag {
+  margin-left: 16rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 列表项通用 */
+.inventory-item {
+  margin-top: 16rpx;
+  display: flex;
+  align-items: center;
+  padding-top: 12rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.color-block {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  background-color: #dddddd;
+}
+
+.info {
+  flex: 1;
+}
+
+.info-main {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4rpx;
+}
+
+.color-name {
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.quantity {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.info-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-tag {
+  padding: 2rpx 12rpx;
+  border-radius: 16rpx;
+  font-size: 22rpx;
+}
+
+.status-low {
+  background-color: #fff1f0;
+  color: #ff4d4f;
+}
+
+.status-normal {
+  background-color: #f6ffed;
+  color: #52c41a;
+}
+
+/* 普通模式行内按钮 */
+.row-actions {
+  margin-left: 12rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.row-btn {
+  min-width: 96rpx;
+  font-size: 22rpx;
+  padding: 0 12rpx;
+}
+
+.row-btn.in {
+  background-color: #07c160;
+  color: #ffffff;
+  border: none;
+}
+
+.row-btn.out {
+  background-color: #ff4d4f;
+  color: #ffffff;
+  border: none;
+}
+
+/* 批量模式 */
+.inventory-item.batch {
+  align-items: flex-start;
+}
+
+.batch-select {
+  margin-right: 12rpx;
+  padding-top: 8rpx;
+}
+
+.checkbox {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 4rpx;
+  border: 2rpx solid #cccccc;
+}
+
+.checkbox.checked {
+  background-color: #07c160;
+  border-color: #07c160;
+}
+
+.batch-input-box {
+  width: 140rpx;
+  margin-left: 12rpx;
+}
+
+.batch-input {
+  width: 100%;
+  height: 56rpx;
+  line-height: 56rpx;
+  padding: 0 8rpx;
+  border-radius: 8rpx;
+  border: 1rpx solid #e0e0e0;
+  font-size: 24rpx;
+}
+
+/* 批量操作栏 */
+.batch-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16rpx 24rpx 24rpx;
+  background-color: #ffffff;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.batch-type {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.batch-type-btn {
+  flex: 1;
+  font-size: 24rpx;
+}
+
+.batch-type-btn.active {
+  background-color: #07c160;
+  color: #ffffff;
+}
+
+.batch-summary {
+  margin-bottom: 8rpx;
+}
+
+.batch-submit-btn {
+  width: 100%;
+  height: 72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  border: none;
+}
+
+/* 弹窗 */
+.modal-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  width: 80%;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.modal-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+.modal-row {
+  margin-bottom: 12rpx;
+}
+
+.modal-label {
+  display: block;
+  font-size: 26rpx;
+  color: #666666;
+  margin-bottom: 4rpx;
+}
+
+.modal-input {
+  border-radius: 8rpx;
+  background-color: #f5f5f5;
+  padding: 10rpx 16rpx;
+  font-size: 26rpx;
+  border: none;
+}
+
+.modal-footer {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer button {
+  margin-left: 12rpx;
+}
+
+/* 入库弹窗：数量 + 单位 */
+.quantity-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4rpx;
+}
+
+.quantity-input {
+  flex: 1;
+}
+
+.quantity-unit-group {
+  margin-left: 12rpx;
+  display: flex;
+  gap: 8rpx;
+}
+
+.unit-btn {
+  font-size: 22rpx;
+}
+
+.unit-btn.active {
+  background-color: #ff9aa2;
+  color: #ffffff;
+  border: none;
+}

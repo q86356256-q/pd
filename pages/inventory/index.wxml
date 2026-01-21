@@ -1,0 +1,259 @@
+<view class="page theme-{{themeKey}}">
+
+<!-- 搜索与品牌选择区 -->
+<view class="card search-card">
+  <view class="search-row">
+    <input
+      class="search-input"
+      placeholder="搜索品牌 / 色号 / 颜色名"
+      confirm-type="search"
+      value="{{keyword}}"
+      bindinput="onKeywordInput"
+      bindconfirm="onSearchConfirm"
+    />
+    <button class="search-btn primary-btn" size="mini" bindtap="onSearchConfirm">搜索</button>
+  </view>
+
+  <!-- 品牌点击切换条（放大 + 像素风） -->
+  <view class="brand-tabs">
+    <scroll-view scroll-x="true" class="brand-tabs-scroll">
+      <view
+        class="brand-tab-pill {{currentBrand === 'ALL' ? 'active' : ''}}"
+        bindtap="onBrandTabClick"
+        data-key="ALL"
+      >
+        <text>全部</text>
+      </view>
+      <view
+        class="brand-tab-pill {{currentBrand === item.key ? 'active' : ''}}"
+        wx:for="{{brandOptions}}"
+        wx:key="key"
+        bindtap="onBrandTabClick"
+        data-key="{{item.key}}"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+
+    <view class="mode-switch" bindtap="toggleMode">
+      <text class="mode-text">
+        {{ mode === 'normal' ? '批量模式' : '普通模式' }}
+      </text>
+    </view>
+  </view>
+</view>
+
+<!-- 库存列表 -->
+<view class="card list-card">
+  <view class="section-title">
+    库存列表（{{filteredInventory.length}}）
+    <text class="mode-tag">
+      {{ mode === 'normal' ? '普通模式' : '批量模式' }}
+    </text>
+  </view>
+
+  <block wx:if="{{filteredInventory.length === 0}}">
+    <view class="empty">
+      <text class="text-small">当前品牌暂无库存记录～</text>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 普通模式 -->
+    <block wx:if="{{mode === 'normal'}}">
+      <view
+        class="inventory-item"
+        wx:for="{{filteredInventory}}"
+        wx:key="id"
+        bindtap="onClickItem"
+        data-id="{{item.id}}"
+        data-brand="{{item.brand}}"
+        data-code="{{item.code}}"
+        data-name="{{item.name}}"
+        data-color-hex="{{item.colorHex}}"
+      >
+        <view class="color-block" style="background-color: {{item.colorHex}};"></view>
+        <view class="info">
+          <view class="info-main">
+            <text class="color-name">{{item.brand}} {{item.code}} {{item.name}}</text>
+            <text class="quantity">{{item.quantity}}</text>
+          </view>
+          <view class="info-sub">
+            <text class="text-small">预警值：{{item.warningThreshold}}</text>
+            <text
+              class="status-tag {{item.quantity <= item.warningThreshold ? 'status-low' : 'status-normal'}}"
+            >
+              {{ item.quantity <= item.warningThreshold ? '低库存' : '正常' }}
+            </text>
+          </view>
+        </view>
+
+        <view class="row-actions" catchtap="noop">
+          <button
+            class="row-btn in"
+            size="mini"
+            bindtap="openSingleInModal"
+            data-id="{{item.id}}"
+          >
+            入库
+          </button>
+          <button
+            class="row-btn out"
+            size="mini"
+            bindtap="openSingleOutModal"
+            data-id="{{item.id}}"
+          >
+            出库
+          </button>
+        </view>
+      </view>
+    </block>
+
+    <!-- 批量模式 -->
+    <block wx:elif="{{mode === 'batch'}}">
+      <view
+        class="inventory-item batch"
+        wx:for="{{filteredInventory}}"
+        wx:key="id"
+      >
+        <view class="batch-select" bindtap="toggleItemSelect" data-id="{{item.id}}">
+          <view class="checkbox {{item.selected ? 'checked' : ''}}"></view>
+        </view>
+
+        <view class="color-block" style="background-color: {{item.colorHex}};"></view>
+
+        <view class="info">
+          <view class="info-main">
+            <text class="color-name">{{item.brand}} {{item.code}} {{item.name}}</text>
+            <text class="quantity">{{item.quantity}}</text>
+          </view>
+          <view class="info-sub">
+            <text class="text-small">预警值：{{item.warningThreshold}}</text>
+            <text
+              class="status-tag {{item.quantity <= item.warningThreshold ? 'status-low' : 'status-normal'}}"
+            >
+              {{ item.quantity <= item.warningThreshold ? '低库存' : '正常' }}
+            </text>
+          </view>
+        </view>
+
+        <view class="batch-input-box">
+          <input
+            class="batch-input"
+            type="number"
+            placeholder="数量"
+            value="{{item.batchQuantity}}"
+            bindinput="onBatchQuantityInput"
+            data-id="{{item.id}}"
+          />
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
+
+<!-- 批量模式操作栏 -->
+<view wx:if="{{mode === 'batch'}}" class="batch-bar">
+  <view class="batch-type">
+    <button
+      size="mini"
+      class="batch-type-btn {{batchType === 'in' ? 'active' : ''}}"
+      bindtap="setBatchType"
+      data-type="in"
+    >
+      批量入库
+    </button>
+    <button
+      size="mini"
+      class="batch-type-btn {{batchType === 'out' ? 'active' : ''}}"
+      bindtap="setBatchType"
+      data-type="out"
+    >
+      批量出库
+    </button>
+  </view>
+  <view class="batch-summary">
+    <text class="text-small">已选择 {{selectedCount}} 个色号</text>
+  </view>
+  <button class="batch-submit-btn primary-btn" bindtap="submitBatch">
+    提交批量{{ batchType === 'in' ? '入库' : '出库' }}
+  </button>
+</view>
+
+<!-- 单个入库/出库弹窗 -->
+<view class="modal-mask" wx:if="{{showSingleModal}}">
+  <view class="modal">
+    <view class="modal-title">
+      {{ singleModalType === 'in' ? '入库' : '出库' }} - {{currentItem.brand}} {{currentItem.code}}
+    </view>
+    <view class="modal-body">
+      <!-- 数量 + 单位选择 -->
+      <view class="modal-row">
+        <text class="modal-label">数量：</text>
+        <view class="quantity-row">
+          <input
+            class="modal-input quantity-input"
+            type="number"
+            placeholder="请输入数量"
+            value="{{singleModalQuantity}}"
+            bindinput="onSingleModalQuantityInput"
+          />
+          <view class="quantity-unit-group">
+            <button
+              size="mini"
+              class="unit-btn {{singleQuantityUnit === 'pieces' ? 'active' : ''}}"
+              bindtap="setSingleQuantityUnit"
+              data-unit="pieces"
+            >
+              颗
+            </button>
+            <button
+              size="mini"
+              class="unit-btn {{singleQuantityUnit === 'package' ? 'active' : ''}}"
+              bindtap="setSingleQuantityUnit"
+              data-unit="package"
+            >
+              包
+            </button>
+            <button
+              size="mini"
+              class="unit-btn {{singleQuantityUnit === 'gram' ? 'active' : ''}}"
+              bindtap="setSingleQuantityUnit"
+              data-unit="gram"
+            >
+              克
+            </button>
+          </view>
+        </view>
+        <text class="text-small" wx:if="{{singleQuantityUnit === 'package'}}">
+          当前配置：1 包 ≈ {{settings.packagePieces}} 颗
+        </text>
+        <text class="text-small" wx:if="{{singleQuantityUnit === 'gram'}}">
+          当前配置：1 克 ≈ {{settings.gramPieces}} 颗
+        </text>
+      </view>
+
+      <view class="modal-row">
+        <text class="modal-label">备注：</text>
+        <input
+          class="modal-input"
+          placeholder="如：购入 / 制作XX作品"
+          value="{{singleModalReason}}"
+          bindinput="onSingleModalReasonInput"
+        />
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button size="mini" bindtap="closeSingleModal">取消</button>
+      <button
+        size="mini"
+        type="primary"
+        bindtap="confirmSingleModal"
+      >
+        确认
+      </button>
+    </view>
+  </view>
+</view>
+
+</view>

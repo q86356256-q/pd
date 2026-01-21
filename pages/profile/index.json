@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "login": "plugin://loginplugin/login"
+  },
+  "navigationBarTitleText": "我的"
+}

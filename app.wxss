@@ -1,0 +1,127 @@
+/** app.wxss **/
+
+/* 全局字体使用系统字体（当前版本不再加载自定义字体） */
+page {
+  font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 像素风通用设置：可用于图片 */
+.pixel-image {
+  image-rendering: pixelated;
+}
+
+/* 通用卡片基础样式（后面由各主题微调边框和阴影） */
+.card {
+  background-color: #ffffff;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin: 16rpx 20rpx;
+  box-shadow: 0 4rpx 0 rgba(0, 0, 0, 0.06);
+  border: 2rpx solid #e5e5e5;
+}
+
+/* 标题区：类似像素 UI 面板 */
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 8rpx 12rpx;
+  border-radius: 8rpx;
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* 小号文字 */
+.text-small {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* ======== 主题：粉粉日系 像素涂鸦 ======== */
+.theme-pink {
+  background:
+    linear-gradient(180deg, rgba(255, 234, 241, 0.95), rgba(255, 247, 251, 0.95)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 192, 203, 0.16),
+      rgba(255, 192, 203, 0.16) 16rpx,
+      rgba(255, 255, 255, 0.1) 16rpx,
+      rgba(255, 255, 255, 0.1) 32rpx
+    );
+}
+
+.theme-pink .card {
+  border-color: #ffc4d6;
+  box-shadow: 0 4rpx 0 #ffadc8;
+}
+
+.theme-pink .primary-text {
+  color: #ff6f91;
+}
+
+.theme-pink .primary-btn {
+  background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+  color: #ffffff;
+  border-radius: 999rpx;
+  border: 2rpx solid #ffccd5;
+}
+
+/* ======== 主题：清爽海蓝 像素涂鸦 ======== */
+.theme-blue {
+  background:
+    linear-gradient(180deg, rgba(230, 244, 255, 0.95), rgba(245, 251, 255, 0.95)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(145, 213, 255, 0.18),
+      rgba(145, 213, 255, 0.18) 16rpx,
+      rgba(255, 255, 255, 0.08) 16rpx,
+      rgba(255, 255, 255, 0.08) 32rpx
+    );
+}
+
+.theme-blue .card {
+  border-color: #bae7ff;
+  box-shadow: 0 4rpx 0 #91d5ff;
+}
+
+.theme-blue .primary-text {
+  color: #4096ff;
+}
+
+.theme-blue .primary-btn {
+  background: linear-gradient(135deg, #69b1ff, #91caff);
+  color: #ffffff;
+  border-radius: 999rpx;
+  border: 2rpx solid #bae0ff;
+}
+
+/* ======== 主题：元气森林绿 像素涂鸦 ======== */
+.theme-green {
+  background:
+    linear-gradient(180deg, rgba(232, 255, 237, 0.95), rgba(245, 255, 248, 0.95)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(135, 208, 104, 0.15),
+      rgba(135, 208, 104, 0.15) 16rpx,
+      rgba(255, 255, 255, 0.08) 16rpx,
+      rgba(255, 255, 255, 0.08) 32rpx
+    );
+}
+
+.theme-green .card {
+  border-color: #b7eb8f;
+  box-shadow: 0 4rpx 0 #95de64;
+}
+
+.theme-green .primary-text {
+  color: #52c41a;
+}
+
+.theme-green .primary-btn {
+  background: linear-gradient(135deg, #73d13d, #95de64);
+  color: #ffffff;
+  border-radius: 999rpx;
+  border: 2rpx solid #b7eb8f;
+}

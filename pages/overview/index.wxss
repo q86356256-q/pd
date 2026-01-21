@@ -1,0 +1,92 @@
+.page {
+  padding-bottom: 40rpx;
+}
+
+/* 家庭信息 */
+.family-row {
+  margin-top: 12rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.family-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.family-members {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 库存总览网格 */
+.overview-grid {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.overview-item {
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.overview-number {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.overview-number.warning {
+  color: #ff4d4f;
+}
+
+.overview-label {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #888888;
+}
+
+/* 常用色 */
+.top-color-item {
+  margin-top: 16rpx;
+  padding-top: 12rpx;
+  border-top: 1rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.color-left {
+  display: flex;
+  align-items: center;
+}
+
+.color-block {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+  background-color: #dddddd;
+}
+
+.color-info .color-name {
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.color-right .rank {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 补货统计 */
+.summary-row {
+  margin-top: 12rpx;
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rpx;
+}

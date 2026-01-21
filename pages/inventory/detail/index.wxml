@@ -1,0 +1,102 @@
+<view class="page">
+
+<!-- 色号基本信息 -->
+<view class="card header-card">
+  <view class="color-row">
+    <view class="color-block" style="background-color: {{color.colorHex}};"></view>
+    <view class="color-info">
+      <text class="color-name">{{color.brand}} {{color.code}} {{color.name}}</text>
+      <text class="color-sub">色号 ID：{{color.id}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- 库存信息 -->
+<view class="card stock-card">
+  <view class="section-title">库存信息</view>
+  <view class="stock-main">
+    <view class="stock-item">
+      <text class="stock-label">当前库存（粒）</text>
+      <text class="stock-value">{{quantity}}</text>
+    </view>
+    <view class="stock-item">
+      <text class="stock-label">预警值</text>
+      <text class="stock-value">{{warningThreshold}}</text>
+    </view>
+    <view class="stock-item">
+      <text class="stock-label">状态</text>
+      <text class="status-tag {{quantity <= warningThreshold ? 'status-low' : 'status-normal'}}">
+        {{ quantity <= warningThreshold ? '低库存' : '正常' }}
+      </text>
+    </view>
+  </view>
+
+  <view class="action-row">
+    <button class="btn in" bindtap="openInModal">入库</button>
+    <button class="btn out" bindtap="openOutModal">出库</button>
+  </view>
+</view>
+
+<!-- 最近变动记录（示例） -->
+<view class="card record-card">
+  <view class="section-title">最近变动（示例）</view>
+  <block wx:if="{{recentLogs.length === 0}}">
+    <text class="text-small">暂无记录</text>
+  </block>
+  <block wx:else>
+    <view class="log-item" wx:for="{{recentLogs}}" wx:key="id">
+      <view class="log-main">
+        <text class="log-change {{item.change > 0 ? 'plus' : 'minus'}}">
+          {{ item.change > 0 ? ('+' + item.change) : item.change }}
+        </text>
+        <text class="log-reason">{{item.reason}}</text>
+      </view>
+      <view class="log-sub">
+        <text class="log-time">{{item.time}}</text>
+        <text class="log-user">{{item.user}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 入库/出库弹窗 -->
+<view class="modal-mask" wx:if="{{showModal}}">
+  <view class="modal">
+    <view class="modal-title">
+      {{ modalType === 'in' ? '入库' : '出库' }} - {{color.brand}} {{color.code}}
+    </view>
+    <view class="modal-body">
+      <view class="modal-row">
+        <text class="modal-label">数量（粒）：</text>
+        <input
+          class="modal-input"
+          type="number"
+          placeholder="请输入数量"
+          value="{{modalQuantity}}"
+          bindinput="onModalQuantityInput"
+        />
+      </view>
+      <view class="modal-row">
+        <text class="modal-label">备注：</text>
+        <input
+          class="modal-input"
+          placeholder="如：购入 / 制作XX作品"
+          value="{{modalReason}}"
+          bindinput="onModalReasonInput"
+        />
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button size="mini" bindtap="closeModal">取消</button>
+      <button
+        size="mini"
+        type="primary"
+        bindtap="confirmModal"
+      >
+        确认
+      </button>
+    </view>
+  </view>
+</view>
+
+</view>

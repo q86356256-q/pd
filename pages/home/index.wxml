@@ -1,0 +1,85 @@
+<view class="page theme-{{themeKey}}">
+
+<!-- 顶部像素风状态栏 -->
+<view class="card header-card">
+  <view class="header-top">
+    <view class="greeting">
+      <text class="greeting-title primary-text">拼豆库存</text>
+      <text class="greeting-welcome">欢迎，{{nickname}}</text>
+      <text class="greeting-subtitle">家庭：{{currentFamilyName}}</text>
+    </view>
+
+    <!-- 主题显示区域：整体可点击切换主题 -->
+    <view class="header-right" bindtap="switchTheme">
+      <view class="theme-pill">
+        <text class="theme-pill-text">{{themeDisplayName}}</text>
+      </view>
+      <text class="theme-hint text-small">轻点换个心情</text>
+    </view>
+  </view>
+
+  <view class="summary-row">
+    <view class="summary-item">
+      <text class="summary-number">{{summary.totalColors}}</text>
+      <text class="summary-label">色号</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-number">{{summary.totalQuantity}}</text>
+      <text class="summary-label">库存</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-number warning">{{summary.lowWarningCount}}</text>
+      <text class="summary-label">低库存</text>
+    </view>
+  </view>
+</view>
+
+<!-- 快捷操作区（像素方块按钮） -->
+<view class="card quick-actions-card">
+  <view class="section-title">快捷操作</view>
+  <view class="actions-grid">
+    <view class="action-item" bindtap="goToInventory">
+      <view class="action-icon inventory"></view>
+      <text class="action-label">查看库存</text>
+    </view>
+    <view class="action-item" bindtap="goToQuickIn">
+      <view class="action-icon in"></view>
+      <text class="action-label">快速入库</text>
+    </view>
+    <view class="action-item" bindtap="goToQuickOut">
+      <view class="action-icon out"></view>
+      <text class="action-label">快速出库</text>
+    </view>
+    <view class="action-item" bindtap="goToOverview">
+      <view class="action-icon overview"></view>
+      <text class="action-label">库存总览</text>
+    </view>
+  </view>
+</view>
+
+<!-- 最近操作记录 -->
+<view class="card recent-card">
+  <view class="section-header">
+    <text class="section-title">最近库存变动</text>
+    <text class="section-more" bindtap="goToInventoryRecord">查看全部</text>
+  </view>
+  <block wx:if="{{recentChanges.length === 0}}">
+    <text class="text-small">暂无记录</text>
+  </block>
+  <block wx:else>
+    <view class="change-item" wx:for="{{recentChanges}}" wx:key="id">
+      <view class="change-main">
+        <text class="change-color">{{item.brand}} {{item.code}}</text>
+        <text class="change-quantity {{item.change > 0 ? 'plus' : 'minus'}}">
+          {{ item.change > 0 ? ('+' + item.change) : item.change }}
+        </text>
+      </view>
+      <view class="change-sub">
+        <text class="change-reason">{{item.reason}}</text>
+        <text class="change-time">{{item.time}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+
+</view>

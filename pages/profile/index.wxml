@@ -1,0 +1,134 @@
+<view class="page theme-{{themeKey}}">
+
+<!-- 顶部头像昵称卡片 -->
+<view class="card profile-header-card">
+  <view class="profile-header">
+    <view class="avatar-wrapper">
+      <image
+        wx:if="{{hasUserInfo && avatarUrl}}"
+        class="avatar-img"
+        src="{{avatarUrl}}"
+        mode="aspectFill"
+      />
+      <view wx:else class="avatar-placeholder">
+        <text class="avatar-placeholder-text">
+          {{ hasUserInfo ? '豆' : '拼' }}
+        </text>
+      </view>
+    </view>
+
+    <view class="header-right">
+      <text class="nickname">{{nickName}}</text>
+      <text class="status-text">
+        {{ hasUserInfo ? '已同步微信头像昵称' : '尚未同步微信头像昵称' }}
+      </text>
+    </view>
+  </view>
+
+  <!-- 头像昵称授权入口：未授权时是按钮，授权后变为轻量提示 -->
+  <view class="profile-auth-row">
+    <button
+      wx:if="{{!hasUserInfo}}"
+      class="auth-btn"
+      type="primary"
+      size="mini"
+      bindtap="onOpenLoginDialog"
+    >
+      获取微信头像昵称
+    </button>
+
+    <text
+      wx:else
+      class="auth-tip-text"
+      bindtap="onOpenLoginDialog"
+    >
+      头像和昵称来自微信，如需更新可点此重新授权
+    </text>
+  </view>
+</view>
+
+<!-- 家庭统计信息卡片 -->
+<view class="card stats-card">
+  <view class="section-title">家庭拼豆概览</view>
+
+  <view class="profile-stats">
+    <view class="stat-item">
+      <text class="stat-number">{{familyMembers}}</text>
+      <text class="stat-label">家庭成员</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{colorCount}}</text>
+      <text class="stat-label">管理色号</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-number">{{inventoryCount}}</text>
+      <text class="stat-label">库存记录</text>
+    </view>
+  </view>
+</view>
+
+<!-- 常用功能 -->
+<view class="card">
+  <view class="section-title">常用功能</view>
+
+  <view class="menu-item" bindtap="onFamilyManage">
+    <view class="menu-left">
+      <text class="menu-title">家庭管理</text>
+      <text class="menu-sub text-small">管理家庭成员与共享库存</text>
+    </view>
+    <view class="menu-arrow">&gt;</view>
+  </view>
+
+  <view class="menu-item" bindtap="onDataExport">
+    <view class="menu-left">
+      <text class="menu-title">数据导出</text>
+      <text class="menu-sub text-small">导出库存数据，方便备份或打印</text>
+    </view>
+    <view class="menu-arrow">&gt;</view>
+  </view>
+</view>
+
+<!-- 系统与设置 -->
+<view class="card">
+  <view class="section-title">系统与设置</view>
+
+  <view class="menu-item" bindtap="goToSettings">
+    <view class="menu-left">
+      <text class="menu-title">设置</text>
+      <text class="menu-sub text-small">默认品牌、预警阈值、库存规格等</text>
+    </view>
+    <view class="menu-arrow">&gt;</view>
+  </view>
+
+  <view class="menu-item" bindtap="onFeedback">
+    <view class="menu-left">
+      <text class="menu-title">意见反馈</text>
+      <text class="menu-sub text-small">使用体验、功能建议都可以告诉我</text>
+    </view>
+    <view class="menu-arrow">&gt;</view>
+  </view>
+
+  <view class="menu-item" bindtap="onAbout">
+    <view class="menu-left">
+      <text class="menu-title">关于小程序</text>
+      <text class="menu-sub text-small">版本：{{version}} · 拼豆库存小助手</text>
+    </view>
+    <view class="menu-arrow">&gt;</view>
+  </view>
+</view>
+
+<!-- 安全注册对话框：只有在 login_show 为 true 时才渲染 -->
+<view
+  class="login-modal-mask"
+  wx:if="{{login_show}}"
+>
+  <login
+    class="login-modal-inner"
+    modal="{{modal1}}"
+    bind:success="loginSuccess"
+    bind:fail="loginFail"
+    bind:cancel="loginCancel"
+  ></login>
+</view>
+
+</view>

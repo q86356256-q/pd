@@ -1,0 +1,88 @@
+<view class="page theme-{{themeKey}}">
+
+<!-- 库存设置 -->
+<view class="card">
+  <view class="section-title">库存设置</view>
+
+  <!-- 默认品牌 -->
+  <view class="setting-row">
+    <view class="setting-label">
+      <text>库存默认品牌</text>
+      <text class="text-small">进入库存页时自动选中</text>
+    </view>
+    <picker
+      mode="selector"
+      range="{{brandOptions}}"
+      range-key="name"
+      value="{{defaultBrandIndex}}"
+      bindchange="onDefaultBrandChange"
+    >
+      <view class="setting-value">
+        <text>{{defaultBrandName}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 预警阈值 -->
+  <view class="setting-row">
+    <view class="setting-label">
+      <text>库存预警阈值</text>
+      <text class="text-small">低于该数值将标记为低库存</text>
+    </view>
+    <view class="setting-value">
+      <input
+        class="setting-input"
+        type="number"
+        value="{{defaultWarningThreshold}}"
+        bindinput="onWarningThresholdInput"
+      />
+      <text class="setting-unit">粒</text>
+    </view>
+  </view>
+</view>
+
+<view class="card">
+  <view class="section-title">库存规格</view>
+
+  <!-- 包 = 多少颗 -->
+  <view class="setting-row">
+    <view class="setting-label">
+      <text>每包颗数</text>
+      <text class="text-small">用于入库时按包数增加</text>
+    </view>
+    <view class="setting-value">
+      <input
+        class="setting-input"
+        type="number"
+        value="{{packagePieces}}"
+        bindinput="onPackagePiecesInput"
+      />
+      <text class="setting-unit">颗 / 包</text>
+    </view>
+  </view>
+
+  <!-- 1克 = 多少颗 -->
+  <view class="setting-row">
+    <view class="setting-label">
+      <text>每克颗数</text>
+      <text class="text-small">用于入库时按克数增加</text>
+    </view>
+    <view class="setting-value">
+      <input
+        class="setting-input"
+        type="number"
+        value="{{gramPieces}}"
+        bindinput="onGramPiecesInput"
+      />
+      <text class="setting-unit">颗 / 克</text>
+    </view>
+  </view>
+
+  <view class="tips">
+    <text class="text-small">
+      示例：每包约 500 颗，每克约 10 颗。可根据你实际称量调整。
+    </text>
+  </view>
+</view>
+
+</view>

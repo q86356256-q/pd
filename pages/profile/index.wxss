@@ -1,0 +1,188 @@
+.page {
+  padding: 16rpx 16rpx 40rpx;
+  background-color: #f7f8fa;
+}
+
+/* 主题作用在根节点，可以根据 themeKey 改背景等 */
+.theme-pink {
+  background-color: #fff7fb;
+}
+
+.theme-blue {
+  background-color: #f6fbff;
+}
+
+/* 通用卡片样式 */
+.card {
+  margin-top: 16rpx;
+  padding: 16rpx;
+  border-radius: 16rpx;
+  background-color: #ffffff;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.03);
+}
+
+/* 不同主题下卡片也可以略有差异（按需启用） */
+/*
+.theme-pink .card {
+  border: 1rpx solid #ffd6e7;
+}
+.theme-blue .card {
+  border: 1rpx solid #bae0ff;
+}
+*/
+
+.section-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+/* 顶部头像昵称卡片 */
+.profile-header-card {
+  margin-top: 24rpx;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  margin-right: 16rpx;
+}
+
+.avatar-img {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+}
+
+.avatar-placeholder {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-placeholder-text {
+  font-size: 40rpx;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.header-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.status-text {
+  margin-top: 4rpx;
+  font-size: 24rpx;
+  color: #777777;
+}
+
+/* 头像昵称授权入口行 */
+.profile-auth-row {
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.auth-btn {
+  font-size: 26rpx;
+}
+
+/* 授权后的小字提示，样式轻量，点击可重新授权 */
+.auth-tip-text {
+  font-size: 22rpx;
+  color: #999999;
+  text-decoration: underline;
+}
+
+/* 家庭统计卡片 */
+.stats-card .section-title {
+  margin-bottom: 12rpx;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rpx;
+}
+
+.stat-item {
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.stat-label {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 菜单项 */
+.menu-item {
+  margin-top: 16rpx;
+  padding-top: 12rpx;
+  border-top: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+}
+
+.menu-left {
+  flex: 1;
+}
+
+.menu-title {
+  font-size: 26rpx;
+  color: #333333;
+}
+
+.menu-sub {
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.menu-arrow {
+  font-size: 28rpx;
+  color: #cccccc;
+  margin-left: 12rpx;
+}
+
+/* 安全注册对话框外层遮罩 */
+.login-modal-mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 9999999;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* 内部 login 组件本身控制自己的布局 */
+.login-modal-inner {
+  /* 留空，让插件自己渲染 */
+}
